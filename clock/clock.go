@@ -12,7 +12,7 @@ type Clock struct {
 	hour, minute int
 }
 
-// Creates a new clock and rolls over minutes and hours
+// New creates a new clock and rolls over minutes and hours
 func New(hour, minute int) Clock {
 	for minute < 0 {
 		minute = 60 + minute
@@ -32,7 +32,7 @@ func New(hour, minute int) Clock {
 	return Clock{hour, minute}
 }
 
-// Stringify the clock
+// String will stringify the clock
 func (c Clock) String() string {
 	out := fmt.Sprintf("%02d:%02d", c.hour, c.minute)
 	return out

@@ -30,7 +30,6 @@ func New(hour, minute int) Clock {
 	for hour < 0 {
 		hour = 24 + hour
 	}
-	fmt.Println(hour, minute)
 	return Clock{hour, minute}
 }
 
@@ -41,5 +40,20 @@ func (c Clock) String() string {
 
 func (c Clock) Add(minutes int) Clock {
 	c.minute += minutes
+	for c.minute < 0 {
+		c.minute = 60 + c.minute
+		c.hour--
+	}
+	if c.minute > 59 {
+		c.hour += c.minute / 60
+		c.minute = c.minute % 60
+	}
+	if c.hour >= 24 {
+		c.hour = c.hour % 24
+	}
+
+	for c.hour < 0 {
+		c.hour = 24 + c.hour
+	}
 	return c
 }

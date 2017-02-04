@@ -6,14 +6,13 @@ package clock
 
 import "fmt"
 
-// The value of testVersion here must match `targetTestVersion` in the file
-// clock_test.go.
 const testVersion = 4
 
 type Clock struct {
 	hour, minute int
 }
 
+// Creates a new clock and rolls over minutes and hours
 func New(hour, minute int) Clock {
 	for minute < 0 {
 		minute = 60 + minute
@@ -33,11 +32,13 @@ func New(hour, minute int) Clock {
 	return Clock{hour, minute}
 }
 
+// Stringify the clock
 func (c Clock) String() string {
 	out := fmt.Sprintf("%02d:%02d", c.hour, c.minute)
 	return out
 }
 
+// Add input even if negative and roll over hours and minutes appropriately
 func (c Clock) Add(minutes int) Clock {
 	c.minute += minutes
 	for c.minute < 0 {

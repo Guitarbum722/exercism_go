@@ -2,7 +2,7 @@
 // the input as a string if the criteria is not met.
 package raindrops
 
-import "fmt"
+import "strconv"
 
 const testVersion = 2
 
@@ -10,21 +10,18 @@ const testVersion = 2
 func Convert(num int) string {
 
 	var out string
-	var div3 = num%3 == 0
-	var div5 = num%5 == 0
-	var div7 = num%7 == 0
 
-	if !(div3 || div5 || div7) {
-		out = fmt.Sprintf("%d", num)
+	if num%3 == 0 {
+		out += "Pling"
 	}
-	if div3 {
-		out = fmt.Sprintf("%s%s", out, "Pling")
+	if num%5 == 0 {
+		out += "Plang"
 	}
-	if div5 {
-		out = fmt.Sprintf("%s%s", out, "Plang")
+	if num%7 == 0 {
+		out += "Plong"
 	}
-	if div7 {
-		out = fmt.Sprintf("%s%s", out, "Plong")
+	if out == "" {
+		out = strconv.Itoa(num)
 	}
 	return out
 }
